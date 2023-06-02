@@ -54,4 +54,32 @@ class FilmeDAO {
     }
       
   }
+  
+  //GetbyID
+  public Filme getById(int id) {
+
+    Filme filme = new Filme();
+   
+    try {
+ 
+    Statement comando = this.conexao.createStatement();
+
+    String sql = "SELECT id, titulo, ano FROM filme WHERE id = ?";
+      PreparedStatement consulta = this.conexao.prepareStatement(sql);
+      consulta.setInt(1, id);
+    
+    ResultSet retorno =  consulta.executeQuery(sql);
+
+    if (retorno.next() == true){
+        String titulo = retorno.getString("titulo");
+        short ano = retorno.getShort("ano");
+
+       filme = new Filme(id, titulo, ano);
+    }
+  
+    }catch(Exception e){
+       System.out.println("Erro na consulta "+e.getMessage());
+     }
+      return filme;
+  }
 }

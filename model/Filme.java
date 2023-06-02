@@ -28,6 +28,10 @@ public void setAno(short ano) {
     this.ano = ano;
   }
 
+  public Filme(){
+    
+  }
+  
   public String toString() {
     return(this.id+" - "+this.titulo+" ("+this.ano+")");
   }
